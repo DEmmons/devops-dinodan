@@ -2,6 +2,10 @@
 
 # Written by Dan Emmons for the DevOps API Challenge. Released to the public domain.
 
+# Challenge: Write a script that builds three 512 MB Cloud Servers that follow
+# a similar naming convention, and returns the IP and login credentials for
+# each server. Use any image you want.
+
 import os
 import pyrax
 import time
