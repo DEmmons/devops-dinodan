@@ -16,6 +16,9 @@ pyrax.set_credential_file(os.path.expanduser("~/.rackspace_cloud_credentials"))
 #set variables
 
 sourceDir = raw_input("Enter path to the directory / folder to be uploaded: ")
+while os.path.exists(sourceDir) == False or os.path.isfile(sourceDir) == True:
+	print "The path entered either doesn't exist, isn't accessible, or is a file. This script requires an existing directory / folder to upload."
+	sourceDir = raw_input("Enter path to the directory / folder to be uploaed: ")
 destContainer = raw_input("Enter name of container to upload to (will be created if it does not already exist): ")
 destRegion = raw_input("Enter Cloud Files region (DFW for Dallas, ORD for Chicago): ")
 while destRegion != "DFW" and destRegion != "ORD":
@@ -23,7 +26,7 @@ while destRegion != "DFW" and destRegion != "ORD":
 
 cfEndpoint = pyrax.connect_to_cloudfiles(destRegion)
 
-print cfEndpoint.list_containers() #debug
+#print cfEndpoint.list_containers() #debug
 if destContainer in cfEndpoint.list_containers():
 	print "A container named %s exists in region %s, using it." % (destContainer, destRegion)
 else:
